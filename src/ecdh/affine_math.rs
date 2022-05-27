@@ -327,7 +327,7 @@ impl<const N: usize> ECSignerType<N> {
                    // {panic!("Ln must be equal to {:?} not {:?}", N * 8, e.bits())};
         let mut r: BigInt = Zero::zero();
         let mut s: BigInt = Zero::zero();
-        while &r == &BigInt::from(0) || &s == &BigInt::from(0) {
+        while &r == &BigInt::from(0u32) || &s == &BigInt::from(0u32) {
             let mut rng = rand::thread_rng();
             let k = rng.gen_biguint((N * 8 as usize) as usize) % &g_ord.to_biguint().unwrap();
             if k < BigUint::from(1u8) || k > &g_ord.to_biguint().unwrap() - BigUint::from(1u8) {
@@ -348,11 +348,11 @@ impl<const N: usize> ECSignerType<N> {
 
             // Calculate `r` and  `s` components which together constitute an ECDSA signature.
             r = k_mul.x % &g_ord;
-            if r != BigInt::from(0) {
+            if r != BigInt::from(0u32) {
                 let k_inverse = k.mod_inverse(&g_ord).unwrap();
                 let sk_bigint = BigInt::from_bytes_be(Sign::Plus, &sk);
                 s = (k_inverse * (&z + (&r * sk_bigint) % &g_ord)) % &g_ord;
-                if s != BigInt::from(0) {
+                if s != BigInt::from(0u32) {
                     break;
                 }
             }
