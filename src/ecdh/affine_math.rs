@@ -1,4 +1,5 @@
 #![allow(warnings)]
+#![feature(alloc)]
 
 use core::convert::TryInto;
 // use libc_print::libc_println;
@@ -9,8 +10,12 @@ use p384::EncodedPoint;
 
 use crate::digest::SHA384Digest;
 use crate::{constants, dh};
+use crate::rng::no_std_rng_gen_biguint;
 use crate::{Result, CryptoError};
 use rand;
+use rand::SeedableRng;
+use rand::rngs::SmallRng;
+use rand::RngCore;
 
 use super::ecdh::{PkP384, SharedSecretP384};
 
@@ -305,6 +310,7 @@ impl<const N: usize> Default for MyAffinePoint<N> {
 pub struct ECSignerType<const N: usize>;
 
 impl<const N: usize> ECSignerType<N> {
+
     /// Given a message and a signing key, returns the signature.
     /// 
     /// `k` used here is an ephemeral scalar value,
@@ -328,8 +334,7 @@ impl<const N: usize> ECSignerType<N> {
         let mut r: BigInt = Zero::zero();
         let mut s: BigInt = Zero::zero();
         while &r == &BigInt::from(0u32) || &s == &BigInt::from(0u32) {
-            let mut rng = rand::thread_rng();
-            let k = rng.gen_biguint((N * 8 as usize) as usize) % &g_ord.to_biguint().unwrap();
+            let k = no_std_rng_gen_biguint((N * 8 as usize) as usize) % &g_ord.to_biguint().unwrap();
             if k < BigUint::from(1u8) || k > &g_ord.to_biguint().unwrap() - BigUint::from(1u8) {
                 panic!("k has to be within group order")
             };
