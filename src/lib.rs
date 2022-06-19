@@ -14,7 +14,8 @@ pub mod digest;
 /// ECDSA implementation
 pub mod signatures;
 pub mod constants;
-
+/// PRNG implementation
+pub mod rng;
 
 use core::fmt;
 
