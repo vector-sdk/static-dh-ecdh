@@ -1,9 +1,9 @@
-use num_bigint_dig::{BigUint, RandBigInt};
-use rand;
+use num_bigint_dig::BigUint;
 
 use core::convert::TryInto;
 
 use crate::constants;
+use crate::rng::no_std_rng_gen_biguint;
 
 /// A function to convert (i.e. unhexlify) a hex-string to a byte array. (Didnt want to use a full-blown crate 
 /// for this.)
@@ -91,8 +91,9 @@ impl DH5 {
 
     /// Generate the private key
     pub fn generate_private_key(&mut self) -> BigUint {
-        let mut rng = rand::thread_rng();
-        self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        // let mut rng = rand::thread_rng();
+        // self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        self.private_key = no_std_rng_gen_biguint((self.exp_size * 8 as usize) as usize);
         // let bytes = Math::bigint_to_bytes(unsigned);
         // self.private_key = Math::bytes_to_bigint(&bytes)
         return self.private_key.clone(); // Need to change the return type to () after testing
@@ -161,8 +162,9 @@ impl DH14 {
 
     /// Generate the private key
     pub fn generate_private_key(&mut self) -> BigUint {
-        let mut rng = rand::thread_rng();
-        self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        // let mut rng = rand::thread_rng();
+        // self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        self.private_key = no_std_rng_gen_biguint((self.exp_size * 8 as usize) as usize);
         // let bytes = Math::bigint_to_bytes(unsigned);
         // self.private_key = Math::bytes_to_bigint(&bytes)
         return self.private_key.clone(); // Need to change the return type to () after testing
@@ -231,8 +233,9 @@ impl DH15 {
 
     /// Generate the private key
     pub fn generate_private_key(&mut self) -> BigUint {
-        let mut rng = rand::thread_rng();
-        self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        // let mut rng = rand::thread_rng();
+        // self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        self.private_key = no_std_rng_gen_biguint((self.exp_size * 8 as usize) as usize);
         // let bytes = Math::bigint_to_bytes(unsigned);
         // self.private_key = Math::bytes_to_bigint(&bytes)
         return self.private_key.clone(); // Need to change the return type to () after testing
@@ -301,8 +304,9 @@ impl DH16 {
 
     /// Generate the private key
     pub fn generate_private_key(&mut self) -> BigUint {
-        let mut rng = rand::thread_rng();
-        self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        // let mut rng = rand::thread_rng();
+        // self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        self.private_key = no_std_rng_gen_biguint((self.exp_size * 8 as usize) as usize);
         // let bytes = Math::bigint_to_bytes(unsigned);
         // self.private_key = Math::bytes_to_bigint(&bytes)
         return self.private_key.clone(); // Need to change the return type to () after testing
@@ -371,8 +375,9 @@ impl DH17 {
 
     /// Generate the private key
     pub fn generate_private_key(&mut self) -> BigUint {
-        let mut rng = rand::thread_rng();
-        self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        // let mut rng = rand::thread_rng();
+        // self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        self.private_key = no_std_rng_gen_biguint((self.exp_size * 8 as usize) as usize);
         // let bytes = Math::bigint_to_bytes(unsigned);
         // self.private_key = Math::bytes_to_bigint(&bytes)
         return self.private_key.clone(); // Need to change the return type to () after testing
@@ -441,8 +446,9 @@ impl DH18 {
 
     /// Generate the private key
     pub fn generate_private_key(&mut self) -> BigUint {
-        let mut rng = rand::thread_rng();
-        self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        // let mut rng = rand::thread_rng();
+        // self.private_key = rng.gen_biguint((self.exp_size * 8 as usize) as usize);
+        self.private_key = no_std_rng_gen_biguint((self.exp_size * 8 as usize) as usize);
         // let bytes = Math::bigint_to_bytes(unsigned);
         // self.private_key = Math::bytes_to_bigint(&bytes)
         return self.private_key.clone(); // Need to change the return type to () after testing
