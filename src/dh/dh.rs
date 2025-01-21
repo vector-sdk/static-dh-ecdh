@@ -19,7 +19,7 @@ pub fn unhexlify_to_bytearray<const N: usize>(prime: &str) -> [u8; N] {
         }
         let substring = &hex_string[i..i + 2];
         let z = (u8::from_str_radix(substring, 16)).unwrap();
-        bytearray[(i - (i / 2))] = z;
+        bytearray[i - (i / 2)] = z;
     }
     return bytearray;
 }
